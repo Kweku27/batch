@@ -3,424 +3,311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BATCH | Quality Deodorants & Care</title>
-  <style>
-    :root {
-      --bg-color: #f8fafc;
-      --card-bg: #ffffff;
-      --primary-color: #0f172a;
-      --accent-color: #2563eb;
-      --accent-light: #eff6ff;
-      --text-main: #334155;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      --radius: 12px;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.5;
-      padding-bottom: 60px;
-    }
-
-    /* Header & Branding */
-    header {
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border-color);
-      padding: 2rem 1rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .brand-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .logo-img {
-      max-height: 80px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .brand-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--primary-color);
-    }
-
-    .brand-tagline {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 500px;
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    /* Controls: Search and Filters */
-    .controls-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .search-bar {
-      width: 100%;
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      outline: none;
-      background-color: var(--card-bg);
-      box-shadow: var(--shadow);
-      transition: border-color 0.2s ease;
-    }
-
-    .search-bar:focus {
-      border-color: var(--accent-color);
-    }
-
-    .filter-tabs {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      padding: 0.6rem 1.2rem;
-      border: 1px solid var(--border-color);
-      background-color: var(--card-bg);
-      color: var(--text-muted);
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
-      background-color: var(--accent-color);
-      color: #ffffff;
-      border-color: var(--accent-color);
-    }
-
-    /* Product Grid */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .product-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-    }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background-color: var(--accent-color);
-    }
-
-    .badge {
-      display: inline-block;
-      align-self: flex-start;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--accent-color);
-      background: var(--accent-light);
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      margin-bottom: 0.75rem;
-    }
-
-    .badge.out-of-stock {
-      color: #dc2626;
-      background: #fef2f2;
-    }
-
-    .product-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-    }
-
-    .product-details {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 1rem;
-      border-top: 1px dashed var(--border-color);
-    }
-
-    .price-tag {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--primary-color);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding: 1.5rem;
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-color);
-    }
-  </style>
+  <title>BATCH | Quality Care & Deodorants</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <div class="brand-container">
-      <img src="batch.png" alt="BATCH Logo" class="logo-img" onerror="this.style.display='none'">
-      <h1 class="brand-title">BATCH</h1>
-      <p class="brand-tagline">Quality Deodorants & Care Products</p>
+  <!-- Header & Brand Hero -->
+  <header class="site-header">
+    <div class="brand-hero">
+      <div class="logo-wrapper">
+        <img src="batch.png" alt="BATCH Logo" class="brand-logo" onerror="this.parentElement.classList.add('no-image')">
+        <span class="logo-fallback-text">BATCH</span>
+      </div>
+      <h1 class="brand-name">BATCH</h1>
+      <p class="brand-tagline">Essential Body Care &amp; Deodorants</p>
     </div>
   </header>
 
-  <div class="container">
-    <div class="controls-wrapper">
-      <input type="text" id="searchInput" class="search-bar" placeholder="Search products..." onkeyup="filterProducts()">
-      <div class="filter-tabs">
+  <!-- Main Content -->
+  <main class="catalog-container">
+    
+    <!-- Controls (Search & Category Tabs) -->
+    <section class="controls-card">
+      <div class="search-field">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search by product name..." onkeyup="filterProducts()">
+      </div>
+
+      <div class="category-tabs">
         <button class="tab-btn active" onclick="setCategory('all', this)">All Products</button>
         <button class="tab-btn" onclick="setCategory('spray', this)">Sprays</button>
-        <button class="tab-btn" onclick="setCategory('rollon', this)">Roll-Ons & Atomizers</button>
+        <button class="tab-btn" onclick="setCategory('rollon', this)">Roll-Ons &amp; Atomizers</button>
       </div>
-    </div>
+    </section>
 
-    <div class="product-grid" id="productGrid">
+    <!-- Product Grid -->
+    <section class="product-grid" id="productGrid">
+      
       <!-- Sprays -->
-      <div class="product-card" data-category="spray" data-name="balea antiperspirant deodorant spray protection 5in1">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Antiperspirant Deodorant Spray Protection 5in1</h3>
-          <p class="product-details">Volume: 200 ml</p>
+      <article class="product-card" data-category="spray" data-name="antiperspirant deodorant spray protection 5in1">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">200 ml</span>
         </div>
+        <h2 class="product-title">Antiperspirant Deodorant Spray Protection 5in1</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray pure softness">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Pure Softness</h3>
-          <p class="product-details">Volume: 150 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray pure softness">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">150 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Pure Softness</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray perfume pink blossom">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Perfume Pink Blossom</h3>
-          <p class="product-details">Volume: 150 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray perfume pink blossom">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">150 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Perfume Pink Blossom</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray perfume golden moon">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Perfume Golden Moon</h3>
-          <p class="product-details">Volume: 150 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray perfume golden moon">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">150 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Perfume Golden Moon</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray perfume glamorous moment">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Perfume Glamorous Moment</h3>
-          <p class="product-details">Volume: 150 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray perfume glamorous moment">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">150 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Perfume Glamorous Moment</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray pure elegance">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Pure Elegance</h3>
-          <p class="product-details">Volume: 150 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray pure elegance">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">150 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Pure Elegance</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray golden blush">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Golden Blush</h3>
-          <p class="product-details">Volume: 150 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray golden blush">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">150 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Golden Blush</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray soft flower">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Soft Flower</h3>
-          <p class="product-details">Volume: 200 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray soft flower">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">200 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Soft Flower</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray vanilla coconut">
-        <div>
-          <span class="badge out-of-stock">Unavailable</span>
-          <h3 class="product-title">Deodorant Spray Vanilla & Coconut</h3>
-          <p class="product-details">Volume: 200 ml</p>
+      <article class="product-card unavailable" data-category="spray" data-name="deodorant spray vanilla coconut">
+        <div class="card-header">
+          <span class="badge badge-disabled">Unavailable</span>
+          <span class="product-volume">200 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Vanilla &amp; Coconut</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea antiperspirant deodorant spray extra dry">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Antiperspirant Deodorant Spray Extra Dry</h3>
-          <p class="product-details">Volume: 200 ml</p>
+      <article class="product-card" data-category="spray" data-name="antiperspirant deodorant spray extra dry">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">200 ml</span>
         </div>
+        <h2 class="product-title">Antiperspirant Deodorant Spray Extra Dry</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea deodorant spray sensitive">
-        <div>
-          <span class="badge">Spray</span>
-          <h3 class="product-title">Deodorant Spray Sensitive</h3>
-          <p class="product-details">Volume: 200 ml</p>
+      <article class="product-card" data-category="spray" data-name="deodorant spray sensitive">
+        <div class="card-header">
+          <span class="badge badge-spray">Spray</span>
+          <span class="product-volume">200 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Spray Sensitive</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="spray" data-name="balea men deodorant spray deep sensation">
-        <div>
-          <span class="badge">Men</span>
-          <h3 class="product-title">Balea MEN Deodorant Spray Deep Sensation</h3>
-          <p class="product-details">Volume: 150 ml</p>
+      <article class="product-card" data-category="spray" data-name="men deodorant spray deep sensation">
+        <div class="card-header">
+          <span class="badge badge-men">Men</span>
+          <span class="product-volume">150 ml</span>
         </div>
+        <h2 class="product-title">Balea MEN Deodorant Spray Deep Sensation</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
       <!-- Roll-Ons & Atomizers -->
-      <div class="product-card" data-category="rollon" data-name="balea deodorant atomizer pink bloom">
-        <div>
-          <span class="badge">Atomizer</span>
-          <h3 class="product-title">Deodorant Atomizer Pink Bloom</h3>
-          <p class="product-details">Volume: 75 ml</p>
+      <article class="product-card" data-category="rollon" data-name="deodorant atomizer pink bloom">
+        <div class="card-header">
+          <span class="badge badge-rollon">Atomizer</span>
+          <span class="product-volume">75 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Atomizer Pink Bloom</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="rollon" data-name="balea deodorant roll-on glamorous moment">
-        <div>
-          <span class="badge">Roll-On</span>
-          <h3 class="product-title">Deodorant Roll-On Glamorous Moment</h3>
-          <p class="product-details">Volume: 50 ml</p>
+      <article class="product-card" data-category="rollon" data-name="deodorant roll-on glamorous moment">
+        <div class="card-header">
+          <span class="badge badge-rollon">Roll-On</span>
+          <span class="product-volume">50 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Roll-On Glamorous Moment</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="rollon" data-name="balea deodorant atomizer sensitive">
-        <div>
-          <span class="badge">Atomizer</span>
-          <h3 class="product-title">Deodorant Atomizer Sensitive</h3>
-          <p class="product-details">Volume: 75 ml</p>
+      <article class="product-card" data-category="rollon" data-name="deodorant atomizer sensitive">
+        <div class="card-header">
+          <span class="badge badge-rollon">Atomizer</span>
+          <span class="product-volume">75 ml</span>
         </div>
+        <h2 class="product-title">Deodorant Atomizer Sensitive</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="rollon" data-name="balea antiperspirant deo roll-on extra dry">
-        <div>
-          <span class="badge">Roll-On</span>
-          <h3 class="product-title">Antiperspirant Deo Roll-On Extra Dry</h3>
-          <p class="product-details">Volume: 50 ml</p>
+      <article class="product-card" data-category="rollon" data-name="antiperspirant deo roll-on extra dry">
+        <div class="card-header">
+          <span class="badge badge-rollon">Roll-On</span>
+          <span class="product-volume">50 ml</span>
         </div>
+        <h2 class="product-title">Antiperspirant Deo Roll-On Extra Dry</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00</span>
+          <span class="price-amount">GH₵ 30.00</span>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card" data-category="rollon" data-name="balea antiperspirant deo roll-on protection 5in1">
-        <div>
-          <span class="badge">Roll-On</span>
-          <h3 class="product-title">Antiperspirant Deo Roll-On Protection 5in1</h3>
-          <p class="product-details">Volume: 50 ml</p>
+      <article class="product-card" data-category="rollon" data-name="antiperspirant deo roll-on protection 5in1">
+        <div class="card-header">
+          <span class="badge badge-rollon">Roll-On</span>
+          <span class="product-volume">50 ml</span>
         </div>
+        <h2 class="product-title">Antiperspirant Deo Roll-On Protection 5in1</h2>
         <div class="card-footer">
-          <span class="price-tag">GH₵ 30.00
+          <span class="price-amount">GH₵ 30.00</span>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="rollon" data-name="deodorant roll-on soft flower">
+        <div class="card-header">
+          <span class="badge badge-rollon">Roll-On</span>
+          <span class="product-volume">50 ml</span>
+        </div>
+        <h2 class="product-title">Deodorant Roll-On Soft Flower</h2>
+        <div class="card-footer">
+          <span class="price-amount">GH₵ 30.00</span>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="rollon" data-name="deodorant roll-on sweet sunshine">
+        <div class="card-header">
+          <span class="badge badge-rollon">Roll-On</span>
+          <span class="product-volume">50 ml</span>
+        </div>
+        <h2 class="product-title">Deodorant Roll-On Sweet Sunshine</h2>
+        <div class="card-footer">
+          <span class="price-amount">GH₵ 30.00</span>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="rollon" data-name="men antiperspirant deo roll-on extra dry">
+        <div class="card-header">
+          <span class="badge badge-men">Men</span>
+          <span class="product-volume">50 ml</span>
+        </div>
+        <h2 class="product-title">Balea MEN Antiperspirant Deo Roll-On Extra Dry</h2>
+        <div class="card-footer">
+          <span class="price-amount">GH₵ 30.00</span>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="rollon" data-name="men antiperspirant deo roll-on fresh">
+        <div class="card-header">
+          <span class="badge badge-men">Men</span>
+          <span class="product-volume">50 ml</span>
+        </div>
+        <h2 class="product-title">Balea MEN Antiperspirant Deo Roll-On Fresh</h2>
+        <div class="card-footer">
+          <span class="price-amount">GH₵ 30.00</span>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; BATCH. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let activeCategory = 'all';
+
+    function setCategory(category, element) {
+      activeCategory = category;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.product-card');
+
+      cards.forEach(card => {
+        const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+        const matchesQuery = card.dataset.name.includes(query);
+
+        if (matchesCategory && matchesQuery) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
