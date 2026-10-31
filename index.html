@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balea Ghana | German Quality Beauty Essentials</title>
+  <style>
+    :root {
+      --primary: #00875a;
+      --primary-dark: #006644;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #2d3748;
+      --gray: #718096;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* Header */
+    header {
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+    .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
+    .cart-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #00875a 0%, #004d33 100%);
+      color: white;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+    .hero h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .hero p { opacity: 0.9; }
+
+    /* Products Grid */
+    .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .card .category { color: var(--gray); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .card .price { font-size: 1.25rem; font-weight: bold; color: var(--primary); margin: 0.5rem 0; }
+    .btn-add {
+      background: #e6f4ea;
+      color: var(--primary-dark);
+      border: none;
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-add:hover { background: var(--primary); color: white; }
+
+    /* Cart Drawer */
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: -400px;
+      width: 350px; height: 100%;
+      background: white;
+      box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+      z-index: 200;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-drawer.open { right: 0; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .cart-items { flex-grow: 1; overflow-y: auto; }
+    .cart-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #eee; }
+    .cart-total { font-size: 1.2rem; font-weight: bold; margin: 1rem 0; text-align: right; }
+    .btn-checkout {
+      background: #25D366;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 150;
+    }
+    .overlay.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <a href="#" class="logo">Balea Ghana</a>
+      <button class="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Authentic German Skincare</h1>
+    <p>Directly imported Balea beauty essentials delivered across Ghana.</p>
+  </section>
+
+  <div class="container">
+    <div class="grid" id="product-grid"></div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button onclick="toggleCart()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <p style="color:var(--gray); text-align:center; margin-top:2rem;">Your cart is empty.</p>
+    </div>
+    <div class="cart-total">Total: GHS <span id="cart-total">0.00</span></div>
+    <button class="btn-checkout" onclick="checkoutWhatsApp()">Order via WhatsApp</button>
+  </div>
+
+  <script>
+    // Config: Put your WhatsApp Phone Number here (with Ghana country code, no + or spaces)
+    const WHATSAPP_NUMBER = "233000000000"; // Replace with your number (e.g. 233241234567)
+
+    const products = [
+      { id: 1, name: "Balea Vitamin C Serum", category: "Face Care", price: 95.00 },
+      { id: 2, name: "Balea Body Lotion (400ml)", category: "Body Care", price: 65.00 },
+      { id: 3, name: "Balea Shower Gel", category: "Body Wash", price: 40.00 },
+      { id: 4, name: "Balea Cleansing Wipes / Tissue", category: "Face Care", price: 35.00 },
+      { id: 5, name: "Balea Roll-On Deodorant", category: "Deo", price: 30.00 },
+      { id: 6, name: "Balea Lip Balm", category: "Lip Care", price: 25.00 }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      const grid = document.getElementById("product-grid");
+      grid.innerHTML = products.map(p => `
+        <div class="card">
+          <div>
+            <div class="category">${p.category}</div>
+            <h3>${p.name}</h3>
+          </div>
+          <div>
+            <div class="price">GHS ${p.price.toFixed(2)}</div>
+            <button class="btn-add" onclick="addToCart(${p.id})">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const item = products.find(p => p.id === id);
+      cart.push(item);
+      updateCart();
+      toggleCart();
+    }
+
+    function updateCart() {
+      document.getElementById("cart-count").innerText = cart.length;
+      const cartItemsEl = document.getElementById("cart-items");
+      
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<p style="color:var(--gray); text-align:center; margin-top:2rem;">Your cart is empty.</p>';
+        document.getElementById("cart-total").innerText = "0.00";
+        return;
+      }
+
+      let total = 0;
+      cartItemsEl.innerHTML = cart.map((item, index) => {
+        total += item.price;
+        return `
+          <div class="cart-item">
+            <div>
+              <strong>${item.name}</strong>
+              <div style="font-size:0.85rem; color:var(--gray);">GHS ${item.price.toFixed(2)}</div>
+            </div>
+            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">Remove</button>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById("cart-total").innerText = total.toFixed(2);
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function toggleCart() {
+      document.getElementById("cart-drawer").classList.toggle("open");
+      document.getElementById("overlay").classList.toggle("active");
+    }
+
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      
+      let message = "Hello Balea Ghana! I would like to place an order:\n\n";
+      let total = 0;
+      cart.forEach((item, i) => {
+        message += `${i + 1}. ${item.name} - GHS ${item.price.toFixed(2)}\n`;
+        total += item.price;
+      });
+      message += `\n*Total: GHS ${total.toFixed(2)}*`;
+      message += "\n\nPlease share payment/MoMo details and delivery instructions!";
+
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank");
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>
