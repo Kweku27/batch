@@ -1,259 +1,426 @@
-<link rel="stylesheet" href="styles.css" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Balea Ghana | German Quality Beauty Essentials</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BATCH | Quality Deodorants & Care</title>
   <style>
     :root {
-      --primary: #00875a;
-      --primary-dark: #006644;
-      --bg: #f8f9fa;
+      --bg-color: #f8fafc;
       --card-bg: #ffffff;
-      --text: #2d3748;
-      --gray: #718096;
+      --primary-color: #0f172a;
+      --accent-color: #2563eb;
+      --accent-light: #eff6ff;
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    /* Header */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* Header & Branding */
     header {
-      background: #ffffff;
-      position: sticky;
-      top: 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      z-index: 100;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: var(--shadow);
     }
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
+
+    .brand-container {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding: 1rem 1.5rem;
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
-    .cart-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
+
+    .logo-img {
+      max-height: 80px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--primary-color);
+    }
+
+    .brand-tagline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 500px;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Controls: Search and Filters */
+    .controls-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      outline: none;
+      background-color: var(--card-bg);
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s ease;
+    }
+
+    .search-bar:focus {
+      border-color: var(--accent-color);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
       padding: 0.6rem 1.2rem;
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg);
+      color: var(--text-muted);
       border-radius: 20px;
       cursor: pointer;
       font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
     }
 
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, #00875a 0%, #004d33 100%);
-      color: white;
-      text-align: center;
-      padding: 3rem 1.5rem;
+    .tab-btn.active, .tab-btn:hover {
+      background-color: var(--accent-color);
+      color: #ffffff;
+      border-color: var(--accent-color);
     }
-    .hero h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
-    .hero p { opacity: 0.9; }
 
-    /* Products Grid */
-    .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
-    .grid {
+    /* Product Grid */
+    .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
     }
-    .card {
+
+    .product-card {
       background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.2rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .card h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
-    .card .category { color: var(--gray); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .card .price { font-size: 1.25rem; font-weight: bold; color: var(--primary); margin: 0.5rem 0; }
-    .btn-add {
-      background: #e6f4ea;
-      color: var(--primary-dark);
-      border: none;
-      width: 100%;
-      padding: 0.6rem;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .btn-add:hover { background: var(--primary); color: white; }
 
-    /* Cart Drawer */
-    .cart-drawer {
-      position: fixed;
-      top: 0; right: -400px;
-      width: 350px; height: 100%;
-      background: white;
-      box-shadow: -4px 0 15px rgba(0,0,0,0.1);
-      transition: right 0.3s ease;
-      z-index: 200;
-      padding: 1.5rem;
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--accent-color);
+    }
+
+    .badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent-color);
+      background: var(--accent-light);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .badge.out-of-stock {
+      color: #dc2626;
+      background: #fef2f2;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-details {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .card-footer {
       display: flex;
-      flex-direction: column;
-    }
-    .cart-drawer.open { right: 0; }
-    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-    .cart-items { flex-grow: 1; overflow-y: auto; }
-    .cart-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #eee; }
-    .cart-total { font-size: 1.2rem; font-weight: bold; margin: 1rem 0; text-align: right; }
-    .btn-checkout {
-      background: #25D366;
-      color: white;
-      border: none;
-      width: 100%;
-      padding: 1rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border-color);
     }
 
-    .overlay {
-      display: none;
-      position: fixed;
-      top:0; left:0; width:100%; height:100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 150;
+    .price-tag {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-color);
     }
-    .overlay.active { display: block; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="nav">
-      <a href="#" class="logo">Balea Ghana</a>
-      <button class="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    <div class="brand-container">
+      <img src="batch.png" alt="BATCH Logo" class="logo-img" onerror="this.style.display='none'">
+      <h1 class="brand-title">BATCH</h1>
+      <p class="brand-tagline">Quality Deodorants & Care Products</p>
     </div>
   </header>
 
-  <section class="hero">
-    <h1>Authentic German Skincare</h1>
-    <p>Directly imported Balea beauty essentials delivered across Ghana.</p>
-  </section>
-
   <div class="container">
-    <div class="grid" id="product-grid"></div>
-  </div>
-
-  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-
-  <div class="cart-drawer" id="cart-drawer">
-    <div class="cart-header">
-      <h2>Your Cart</h2>
-      <button onclick="toggleCart()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+    <div class="controls-wrapper">
+      <input type="text" id="searchInput" class="search-bar" placeholder="Search products..." onkeyup="filterProducts()">
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="setCategory('all', this)">All Products</button>
+        <button class="tab-btn" onclick="setCategory('spray', this)">Sprays</button>
+        <button class="tab-btn" onclick="setCategory('rollon', this)">Roll-Ons & Atomizers</button>
+      </div>
     </div>
-    <div class="cart-items" id="cart-items">
-      <p style="color:var(--gray); text-align:center; margin-top:2rem;">Your cart is empty.</p>
-    </div>
-    <div class="cart-total">Total: GHS <span id="cart-total">0.00</span></div>
-    <button class="btn-checkout" onclick="checkoutWhatsApp()">Order via WhatsApp</button>
-  </div>
 
-  <script>
-    // Config: Put your WhatsApp Phone Number here (with Ghana country code, no + or spaces)
-    const WHATSAPP_NUMBER = "233000000000"; // Replace with your number (e.g. 233241234567)
-
-    const products = [
-      { id: 1, name: "Balea Vitamin C Serum", category: "Face Care", price: 95.00 },
-      { id: 2, name: "Balea Body Lotion (400ml)", category: "Body Care", price: 65.00 },
-      { id: 3, name: "Balea Shower Gel", category: "Body Wash", price: 40.00 },
-      { id: 4, name: "Balea Cleansing Wipes / Tissue", category: "Face Care", price: 35.00 },
-      { id: 5, name: "Balea Roll-On Deodorant", category: "Deo", price: 30.00 },
-      { id: 6, name: "Balea Lip Balm", category: "Lip Care", price: 25.00 }
-    ];
-
-    let cart = [];
-
-    function renderProducts() {
-      const grid = document.getElementById("product-grid");
-      grid.innerHTML = products.map(p => `
-        <div class="card">
-          <div>
-            <div class="category">${p.category}</div>
-            <h3>${p.name}</h3>
-          </div>
-          <div>
-            <div class="price">GHS ${p.price.toFixed(2)}</div>
-            <button class="btn-add" onclick="addToCart(${p.id})">Add to Cart</button>
-          </div>
+    <div class="product-grid" id="productGrid">
+      <!-- Sprays -->
+      <div class="product-card" data-category="spray" data-name="balea antiperspirant deodorant spray protection 5in1">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Antiperspirant Deodorant Spray Protection 5in1</h3>
+          <p class="product-details">Volume: 200 ml</p>
         </div>
-      `).join('');
-    }
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-    function addToCart(id) {
-      const item = products.find(p => p.id === id);
-      cart.push(item);
-      updateCart();
-      toggleCart();
-    }
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray pure softness">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Pure Softness</h3>
+          <p class="product-details">Volume: 150 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-    function updateCart() {
-      document.getElementById("cart-count").innerText = cart.length;
-      const cartItemsEl = document.getElementById("cart-items");
-      
-      if (cart.length === 0) {
-        cartItemsEl.innerHTML = '<p style="color:var(--gray); text-align:center; margin-top:2rem;">Your cart is empty.</p>';
-        document.getElementById("cart-total").innerText = "0.00";
-        return;
-      }
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray perfume pink blossom">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Perfume Pink Blossom</h3>
+          <p class="product-details">Volume: 150 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-      let total = 0;
-      cartItemsEl.innerHTML = cart.map((item, index) => {
-        total += item.price;
-        return `
-          <div class="cart-item">
-            <div>
-              <strong>${item.name}</strong>
-              <div style="font-size:0.85rem; color:var(--gray);">GHS ${item.price.toFixed(2)}</div>
-            </div>
-            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">Remove</button>
-          </div>
-        `;
-      }).join('');
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray perfume golden moon">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Perfume Golden Moon</h3>
+          <p class="product-details">Volume: 150 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-      document.getElementById("cart-total").innerText = total.toFixed(2);
-    }
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray perfume glamorous moment">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Perfume Glamorous Moment</h3>
+          <p class="product-details">Volume: 150 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCart();
-    }
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray pure elegance">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Pure Elegance</h3>
+          <p class="product-details">Volume: 150 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-    function toggleCart() {
-      document.getElementById("cart-drawer").classList.toggle("open");
-      document.getElementById("overlay").classList.toggle("active");
-    }
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray golden blush">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Golden Blush</h3>
+          <p class="product-details">Volume: 150 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-    function checkoutWhatsApp() {
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-      
-      let message = "Hello Balea Ghana! I would like to place an order:\n\n";
-      let total = 0;
-      cart.forEach((item, i) => {
-        message += `${i + 1}. ${item.name} - GHS ${item.price.toFixed(2)}\n`;
-        total += item.price;
-      });
-      message += `\n*Total: GHS ${total.toFixed(2)}*`;
-      message += "\n\nPlease share payment/MoMo details and delivery instructions!";
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray soft flower">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Soft Flower</h3>
+          <p class="product-details">Volume: 200 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-      const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank");
-    }
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray vanilla coconut">
+        <div>
+          <span class="badge out-of-stock">Unavailable</span>
+          <h3 class="product-title">Deodorant Spray Vanilla & Coconut</h3>
+          <p class="product-details">Volume: 200 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
-    renderProducts();
-  </script>
-</body>
-</html>
+      <div class="product-card" data-category="spray" data-name="balea antiperspirant deodorant spray extra dry">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Antiperspirant Deodorant Spray Extra Dry</h3>
+          <p class="product-details">Volume: 200 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
 
+      <div class="product-card" data-category="spray" data-name="balea deodorant spray sensitive">
+        <div>
+          <span class="badge">Spray</span>
+          <h3 class="product-title">Deodorant Spray Sensitive</h3>
+          <p class="product-details">Volume: 200 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="spray" data-name="balea men deodorant spray deep sensation">
+        <div>
+          <span class="badge">Men</span>
+          <h3 class="product-title">Balea MEN Deodorant Spray Deep Sensation</h3>
+          <p class="product-details">Volume: 150 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
+
+      <!-- Roll-Ons & Atomizers -->
+      <div class="product-card" data-category="rollon" data-name="balea deodorant atomizer pink bloom">
+        <div>
+          <span class="badge">Atomizer</span>
+          <h3 class="product-title">Deodorant Atomizer Pink Bloom</h3>
+          <p class="product-details">Volume: 75 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rollon" data-name="balea deodorant roll-on glamorous moment">
+        <div>
+          <span class="badge">Roll-On</span>
+          <h3 class="product-title">Deodorant Roll-On Glamorous Moment</h3>
+          <p class="product-details">Volume: 50 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rollon" data-name="balea deodorant atomizer sensitive">
+        <div>
+          <span class="badge">Atomizer</span>
+          <h3 class="product-title">Deodorant Atomizer Sensitive</h3>
+          <p class="product-details">Volume: 75 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rollon" data-name="balea antiperspirant deo roll-on extra dry">
+        <div>
+          <span class="badge">Roll-On</span>
+          <h3 class="product-title">Antiperspirant Deo Roll-On Extra Dry</h3>
+          <p class="product-details">Volume: 50 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00</span>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rollon" data-name="balea antiperspirant deo roll-on protection 5in1">
+        <div>
+          <span class="badge">Roll-On</span>
+          <h3 class="product-title">Antiperspirant Deo Roll-On Protection 5in1</h3>
+          <p class="product-details">Volume: 50 ml</p>
+        </div>
+        <div class="card-footer">
+          <span class="price-tag">GH₵ 30.00
