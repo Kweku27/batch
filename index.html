@@ -1,34 +1,25 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BATCH | Beauty, cosmetic & personal care</title>
+  <title>BATCH — Beauty, Cosmetic & Personal Care</title>
   <style>
     :root {
-      /* Brand Colors Extracted from batch.png */
-      --navy-dark: #0b1736;
-      --navy-medium: #172a59;
-      --sky-blue: #93c5fd;
-      --coral-accent: #f09a67;
-      --coral-dark: #e27c59;
-      --whatsapp-green: #25d366;
-      --whatsapp-green-dark: #1da851;
-      
-      /* Neutral Palette */
-      --bg-page: #f8fafc;
-      --card-bg: #ffffff;
-      --text-primary: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      
-      /* Styling Tokens */
-      --radius-lg: 16px;
-      --radius-md: 10px;
-      --radius-pill: 50px;
-      --shadow-subtle: 0 4px 12px rgba(11, 23, 54, 0.05);
-      --shadow-hover: 0 12px 24px rgba(11, 23, 54, 0.12);
-      --logo-gradient: linear-gradient(135deg, #a5c4e8 0%, #d8b4a0 50%, #f09a67 100%);
+      /* Minimalist Swiss Color Palette */
+      --color-bg: #ffffff;
+      --color-surface: #fafafa;
+      --color-text-main: #111111;
+      --color-text-muted: #757575;
+      --color-line: #e5e5e5;
+      --color-accent: #0b1736; /* BATCH Deep Navy */
+      --color-coral: #f09a67;  /* BATCH Accent Coral */
+      --color-whatsapp: #128c7e;
+
+      /* Typography & Layout */
+      --font-swiss: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --border-thin: 1px solid var(--color-line);
+      --border-bold: 2px solid var(--color-text-main);
     }
 
     * {
@@ -38,49 +29,58 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background-color: var(--bg-page);
-      color: var(--text-primary);
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-family: var(--font-swiss);
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      line-height: 1.4;
       padding-bottom: 90px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header & Brand Hero */
-    .site-header {
-      background: var(--navy-dark);
-      background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy-medium) 100%);
-      color: #ffffff;
-      padding: 3rem 1.5rem 2.5rem;
+    /* Minimalist Top Announcement Bar */
+    .top-bar {
+      border-bottom: var(--border-thin);
+      padding: 0.6rem 1rem;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(11, 23, 54, 0.15);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    /* Site Header */
+    .site-header {
+      border-bottom: var(--border-thin);
+      padding: 2.5rem 1.5rem 2rem;
+      background: var(--color-bg);
     }
 
     .brand-hero {
-      max-width: 800px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
     }
 
+    /* Enriched & Larger Logo Wrapper */
     .logo-wrapper {
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      padding: 1rem 2rem;
+      border: var(--border-thin);
       background: #ffffff;
-      padding: 0.75rem 1.25rem;
-      border-radius: var(--radius-md);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 280px;
+      width: 100%;
     }
 
     .brand-logo {
-      max-height: 60px;
+      max-height: 100px; /* Enlarged Logo Size */
       width: auto;
-      display: block;
       object-fit: contain;
     }
 
@@ -90,88 +90,68 @@
 
     .logo-fallback-text {
       display: none;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--navy-dark);
-      letter-spacing: 2px;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      color: var(--color-text-main);
     }
 
     .logo-wrapper.no-image .logo-fallback-text {
       display: block;
     }
 
-    .brand-name {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.25rem;
-      background: linear-gradient(135deg, #ffffff 40%, var(--coral-accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     .brand-tagline {
-      font-size: 1rem;
-      color: var(--sky-blue);
-      font-weight: 400;
-      letter-spacing: 0.02em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
     }
 
-    /* Main Container */
+    /* Layout Main */
     .catalog-container {
-      max-width: 1100px;
-      margin: -1.5rem auto 3rem;
-      padding: 0 1.25rem;
-      width: 100%;
-      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
     }
 
-    /* Controls Section */
-    .controls-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-subtle);
-      border: 1px solid var(--border-color);
-      margin-bottom: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    /* Controls (Filter & Search Grid) */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: var(--border-thin);
+      margin-bottom: 2.5rem;
+      align-items: center;
     }
 
-    .search-field {
+    @media (max-width: 768px) {
+      .controls-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .search-box {
       position: relative;
-      width: 100%;
     }
 
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-
-    .search-field input {
+    .search-input {
       width: 100%;
-      padding: 0.85rem 1rem 0.85rem 2.8rem;
-      font-size: 1rem;
-      border: 1.5px solid var(--border-color);
-      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-swiss);
+      font-size: 0.9rem;
+      border: var(--border-thin);
+      background: var(--color-bg);
       outline: none;
-      transition: all 0.2s ease;
-      background: var(--bg-page);
-      color: var(--text-primary);
+      transition: border-color 0.2s;
     }
 
-    .search-field input:focus {
-      border-color: var(--coral-accent);
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(240, 154, 103, 0.15);
+    .search-input:focus {
+      border-color: var(--color-text-main);
     }
 
-    /* Category Filter Tabs */
     .category-tabs {
       display: flex;
       gap: 0.5rem;
@@ -179,119 +159,69 @@
     }
 
     .tab-btn {
-      padding: 0.6rem 1.25rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-color);
-      background: var(--bg-page);
-      color: var(--text-muted);
+      padding: 0.6rem 1.2rem;
+      font-family: var(--font-swiss);
+      font-size: 0.8rem;
       font-weight: 600;
-      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: var(--border-thin);
+      background: var(--color-bg);
+      color: var(--color-text-muted);
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .tab-btn:hover {
-      color: var(--navy-dark);
-      border-color: var(--navy-dark);
-    }
-
-    .tab-btn.active {
-      background: var(--navy-dark);
-      color: #ffffff;
-      border-color: var(--navy-dark);
+    .tab-btn:hover, .tab-btn.active {
+      color: var(--color-bg);
+      background: var(--color-text-main);
+      border-color: var(--color-text-main);
     }
 
     /* Product Grid */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
     }
 
-    /* Product Card */
     .product-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
+      border: var(--border-thin);
+      background: var(--color-bg);
       padding: 1.5rem;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-subtle);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.25s ease;
+      transition: border-color 0.2s;
       position: relative;
-      overflow: hidden;
-    }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--logo-gradient);
-      opacity: 0.8;
     }
 
     .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(240, 154, 103, 0.4);
+      border-color: var(--color-text-main);
     }
 
     .product-card.unavailable {
-      opacity: 0.65;
+      opacity: 0.5;
     }
 
-    .card-header {
+    .card-meta {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.85rem;
-    }
-
-    .badge {
       font-size: 0.75rem;
-      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.3rem 0.65rem;
-      border-radius: var(--radius-pill);
-    }
-
-    .badge-spray {
-      background: #eff6ff;
-      color: #1d4ed8;
-    }
-
-    .badge-rollon {
-      background: #fef3c7;
-      color: #b45309;
-    }
-
-    .badge-men {
-      background: #e0e7ff;
-      color: #3730a3;
-    }
-
-    .badge-disabled {
-      background: #f1f5f9;
-      color: #64748b;
-    }
-
-    .product-volume {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: var(--border-thin);
     }
 
     .product-title {
       font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--navy-dark);
-      margin-bottom: 1.25rem;
-      line-height: 1.4;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      line-height: 1.35;
     }
 
     .card-footer {
@@ -299,414 +229,643 @@
       align-items: center;
       justify-content: space-between;
       padding-top: 1rem;
-      border-top: 1px dashed var(--border-color);
-      margin-top: auto;
-      gap: 0.5rem;
+      border-top: var(--border-thin);
     }
 
-    .price-amount {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--coral-dark);
+    .price-tag {
+      font-size: 1.1rem;
+      font-weight: 700;
     }
 
-    .add-cart-btn {
-      background: var(--navy-dark);
-      color: #ffffff;
-      border: none;
-      padding: 0.5rem 0.85rem;
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      font-size: 0.85rem;
+    .btn-add {
+      font-family: var(--font-swiss);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.6rem 1rem;
+      border: var(--border-thin);
+      background: var(--color-bg);
+      color: var(--color-text-main);
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: all 0.2s ease;
     }
 
-    .add-cart-btn:hover {
-      background: var(--coral-dark);
+    .btn-add:hover {
+      background: var(--color-text-main);
+      color: var(--color-bg);
     }
 
-    .product-card.unavailable .add-cart-btn {
-      background: var(--border-color);
-      color: var(--text-muted);
+    .btn-add:disabled {
       cursor: not-allowed;
+      border-color: var(--color-line);
+      color: var(--color-text-muted);
     }
 
-    /* Floating WhatsApp Cart Bar */
+    /* Fixed Bottom Cart Bar */
     .cart-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: var(--navy-dark);
-      color: #ffffff;
+      background: var(--color-text-main);
+      color: var(--color-bg);
       padding: 1rem 1.5rem;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      z-index: 1000;
+      z-index: 900;
+      cursor: pointer;
       transform: translateY(100%);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .cart-bar.visible {
+    .cart-bar.active {
       transform: translateY(0);
     }
 
-    .cart-summary {
+    .cart-info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .cart-count-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-coral);
+      padding-bottom: 2px;
+    }
+
+    .cart-total-amount {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .btn-view-cart {
+      font-family: var(--font-swiss);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--color-bg);
+      color: var(--color-text-main);
+      padding: 0.6rem 1.25rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Side Cart Drawer Overlay */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 440px;
+      background: var(--color-bg);
+      z-index: 1001;
       display: flex;
       flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border-left: var(--border-thin);
     }
 
-    .cart-count-text {
-      font-size: 0.85rem;
-      color: var(--sky-blue);
+    .cart-drawer.open {
+      transform: translateX(0);
     }
 
-    .cart-total-text {
-      font-size: 1.2rem;
+    .drawer-header {
+      padding: 1.5rem;
+      border-bottom: var(--border-thin);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-title {
+      font-size: 1.1rem;
       font-weight: 800;
-      color: var(--coral-accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
-    .whatsapp-btn {
-      background: var(--whatsapp-green);
-      color: #ffffff;
-      text-decoration: none;
-      padding: 0.75rem 1.25rem;
-      border-radius: var(--radius-pill);
-      font-weight: 700;
-      display: inline-flex;
+    .btn-close-drawer {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-text-main);
+      line-height: 1;
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: var(--border-thin);
+    }
+
+    .item-details {
+      flex: 1;
+      padding-right: 1rem;
+    }
+
+    .item-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .item-price {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .item-controls {
+      display: flex;
       align-items: center;
       gap: 0.5rem;
-      transition: background 0.2s ease;
+      margin-top: 0.75rem;
     }
 
-    .whatsapp-btn:hover {
-      background: var(--whatsapp-green-dark);
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border: var(--border-thin);
+      background: var(--color-bg);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-val {
+      font-size: 0.85rem;
+      font-weight: 700;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .item-subtotal {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .btn-remove {
+      background: none;
+      border: none;
+      color: #dc2626;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    .drawer-footer {
+      padding: 1.5rem;
+      border-top: var(--border-thin);
+      background: var(--color-surface);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-whatsapp-checkout {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: var(--color-whatsapp);
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: opacity 0.2s;
+    }
+
+    .btn-whatsapp-checkout:hover {
+      opacity: 0.9;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      margin-top: 3rem;
     }
 
     /* Footer */
     .site-footer {
-      background: var(--navy-dark);
-      color: var(--text-muted);
+      border-top: var(--border-thin);
+      padding: 2rem 1.5rem;
       text-align: center;
-      padding: 1.75rem 1rem;
-      font-size: 0.875rem;
-      margin-top: auto;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .site-footer p {
-      color: var(--sky-blue);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
     }
   </style>
 </head>
 <body>
 
-  <!-- Header & Brand Hero -->
+  <div class="top-bar">
+    Official BATCH Product Catalog — Direct Orders
+  </div>
+
   <header class="site-header">
     <div class="brand-hero">
       <div class="logo-wrapper">
         <img src="batch.png" alt="BATCH Logo" class="brand-logo" onerror="this.parentElement.classList.add('no-image')">
         <span class="logo-fallback-text">BATCH</span>
       </div>
-      <h1 class="brand-name">BATCH</h1>
-      <p class="brand-tagline">Beauty, cosmetic & personal care</p>
+      <p class="brand-tagline">Beauty, cosmetic &amp; personal care</p>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="catalog-container">
     
-    <!-- Controls (Search & Category Tabs) -->
-    <section class="controls-card">
-      <div class="search-field">
-        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input type="text" id="searchInput" placeholder="Search by product name..." onkeyup="filterProducts()">
+    <div class="controls-grid">
+      <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search catalog..." onkeyup="filterProducts()">
       </div>
-
       <div class="category-tabs">
-        <button class="tab-btn active" onclick="setCategory('all', this)">All Products</button>
+        <button class="tab-btn active" onclick="setCategory('all', this)">All</button>
         <button class="tab-btn" onclick="setCategory('spray', this)">Sprays</button>
         <button class="tab-btn" onclick="setCategory('rollon', this)">Roll-Ons &amp; Atomizers</button>
       </div>
-    </section>
+    </div>
 
-    <!-- Product Grid -->
-    <section class="product-grid" id="productGrid">
+    <div class="product-grid" id="productGrid">
       
       <!-- Sprays -->
       <article class="product-card" data-category="spray" data-name="antiperspirant deodorant spray protection 5in1">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">200 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>200 ml</span>
+          </div>
+          <h2 class="product-title">Antiperspirant Deodorant Spray Protection 5in1</h2>
         </div>
-        <h2 class="product-title">Antiperspirant Deodorant Spray Protection 5in1</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Antiperspirant Deodorant Spray Protection 5in1 (200ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Antiperspirant Deodorant Spray Protection 5in1 (200ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray pure softness">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">150 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>150 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Pure Softness</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Pure Softness</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Pure Softness (150ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Pure Softness (150ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray perfume pink blossom">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">150 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>150 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Perfume Pink Blossom</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Perfume Pink Blossom</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Perfume Pink Blossom (150ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Perfume Pink Blossom (150ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray perfume golden moon">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">150 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>150 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Perfume Golden Moon</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Perfume Golden Moon</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Perfume Golden Moon (150ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Perfume Golden Moon (150ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray perfume glamorous moment">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">150 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>150 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Perfume Glamorous Moment</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Perfume Glamorous Moment</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Perfume Glamorous Moment (150ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Perfume Glamorous Moment (150ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray pure elegance">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">150 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>150 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Pure Elegance</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Pure Elegance</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Pure Elegance (150ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Pure Elegance (150ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray golden blush">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">150 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>150 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Golden Blush</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Golden Blush</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Golden Blush (150ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Golden Blush (150ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray soft flower">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">200 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>200 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Soft Flower</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Soft Flower</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Soft Flower (200ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Soft Flower (200ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card unavailable" data-category="spray" data-name="deodorant spray vanilla coconut">
-        <div class="card-header">
-          <span class="badge badge-disabled">Unavailable</span>
-          <span class="product-volume">200 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Unavailable</span>
+            <span>200 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Vanilla &amp; Coconut</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Vanilla &amp; Coconut</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" disabled>Out of stock</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" disabled>Out of Stock</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="antiperspirant deodorant spray extra dry">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">200 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>200 ml</span>
+          </div>
+          <h2 class="product-title">Antiperspirant Deodorant Spray Extra Dry</h2>
         </div>
-        <h2 class="product-title">Antiperspirant Deodorant Spray Extra Dry</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Antiperspirant Deodorant Spray Extra Dry (200ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Antiperspirant Deodorant Spray Extra Dry (200ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="deodorant spray sensitive">
-        <div class="card-header">
-          <span class="badge badge-spray">Spray</span>
-          <span class="product-volume">200 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Spray</span>
+            <span>200 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Spray Sensitive</h2>
         </div>
-        <h2 class="product-title">Deodorant Spray Sensitive</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Spray Sensitive (200ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Spray Sensitive (200ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="spray" data-name="men deodorant spray deep sensation">
-        <div class="card-header">
-          <span class="badge badge-men">Men</span>
-          <span class="product-volume">150 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Men</span>
+            <span>150 ml</span>
+          </div>
+          <h2 class="product-title">Balea MEN Deodorant Spray Deep Sensation</h2>
         </div>
-        <h2 class="product-title">Balea MEN Deodorant Spray Deep Sensation</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Balea MEN Deodorant Spray Deep Sensation (150ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Balea MEN Deodorant Spray Deep Sensation (150ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <!-- Roll-Ons & Atomizers -->
       <article class="product-card" data-category="rollon" data-name="deodorant atomizer pink bloom">
-        <div class="card-header">
-          <span class="badge badge-rollon">Atomizer</span>
-          <span class="product-volume">75 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Atomizer</span>
+            <span>75 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Atomizer Pink Bloom</h2>
         </div>
-        <h2 class="product-title">Deodorant Atomizer Pink Bloom</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Atomizer Pink Bloom (75ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Atomizer Pink Bloom (75ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="deodorant roll-on glamorous moment">
-        <div class="card-header">
-          <span class="badge badge-rollon">Roll-On</span>
-          <span class="product-volume">50 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Roll-On</span>
+            <span>50 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Roll-On Glamorous Moment</h2>
         </div>
-        <h2 class="product-title">Deodorant Roll-On Glamorous Moment</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Roll-On Glamorous Moment (50ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Roll-On Glamorous Moment (50ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="deodorant atomizer sensitive">
-        <div class="card-header">
-          <span class="badge badge-rollon">Atomizer</span>
-          <span class="product-volume">75 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Atomizer</span>
+            <span>75 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Atomizer Sensitive</h2>
         </div>
-        <h2 class="product-title">Deodorant Atomizer Sensitive</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Atomizer Sensitive (75ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Atomizer Sensitive (75ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="antiperspirant deo roll-on extra dry">
-        <div class="card-header">
-          <span class="badge badge-rollon">Roll-On</span>
-          <span class="product-volume">50 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Roll-On</span>
+            <span>50 ml</span>
+          </div>
+          <h2 class="product-title">Antiperspirant Deo Roll-On Extra Dry</h2>
         </div>
-        <h2 class="product-title">Antiperspirant Deo Roll-On Extra Dry</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Antiperspirant Deo Roll-On Extra Dry (50ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Antiperspirant Deo Roll-On Extra Dry (50ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="antiperspirant deo roll-on protection 5in1">
-        <div class="card-header">
-          <span class="badge badge-rollon">Roll-On</span>
-          <span class="product-volume">50 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Roll-On</span>
+            <span>50 ml</span>
+          </div>
+          <h2 class="product-title">Antiperspirant Deo Roll-On Protection 5in1</h2>
         </div>
-        <h2 class="product-title">Antiperspirant Deo Roll-On Protection 5in1</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Antiperspirant Deo Roll-On Protection 5in1 (50ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Antiperspirant Deo Roll-On Protection 5in1 (50ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="deodorant roll-on soft flower">
-        <div class="card-header">
-          <span class="badge badge-rollon">Roll-On</span>
-          <span class="product-volume">50 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Roll-On</span>
+            <span>50 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Roll-On Soft Flower</h2>
         </div>
-        <h2 class="product-title">Deodorant Roll-On Soft Flower</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Roll-On Soft Flower (50ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Roll-On Soft Flower (50ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="deodorant roll-on sweet sunshine">
-        <div class="card-header">
-          <span class="badge badge-rollon">Roll-On</span>
-          <span class="product-volume">50 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Roll-On</span>
+            <span>50 ml</span>
+          </div>
+          <h2 class="product-title">Deodorant Roll-On Sweet Sunshine</h2>
         </div>
-        <h2 class="product-title">Deodorant Roll-On Sweet Sunshine</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Deodorant Roll-On Sweet Sunshine (50ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Deodorant Roll-On Sweet Sunshine (50ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="men antiperspirant deo roll-on extra dry">
-        <div class="card-header">
-          <span class="badge badge-men">Men</span>
-          <span class="product-volume">50 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Men</span>
+            <span>50 ml</span>
+          </div>
+          <h2 class="product-title">Balea MEN Antiperspirant Deo Roll-On Extra Dry</h2>
         </div>
-        <h2 class="product-title">Balea MEN Antiperspirant Deo Roll-On Extra Dry</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Balea MEN Antiperspirant Deo Roll-On Extra Dry (50ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Balea MEN Antiperspirant Deo Roll-On Extra Dry (50ml)', 30)">+ Add</button>
         </div>
       </article>
 
       <article class="product-card" data-category="rollon" data-name="men antiperspirant deo roll-on fresh">
-        <div class="card-header">
-          <span class="badge badge-men">Men</span>
-          <span class="product-volume">50 ml</span>
+        <div>
+          <div class="card-meta">
+            <span>Men</span>
+            <span>50 ml</span>
+          </div>
+          <h2 class="product-title">Balea MEN Antiperspirant Deo Roll-On Fresh</h2>
         </div>
-        <h2 class="product-title">Balea MEN Antiperspirant Deo Roll-On Fresh</h2>
         <div class="card-footer">
-          <span class="price-amount">GH₵ 30.00</span>
-          <button class="add-cart-btn" onclick="addToCart('Balea MEN Antiperspirant Deo Roll-On Fresh (50ml)', 30)">+ Add</button>
+          <span class="price-tag">GH₵ 30.00</span>
+          <button class="btn-add" onclick="addToCart('Balea MEN Antiperspirant Deo Roll-On Fresh (50ml)', 30)">+ Add</button>
         </div>
       </article>
 
-    </section>
+    </div>
   </main>
 
-  <!-- Sticky WhatsApp Cart Bar -->
-  <div class="cart-bar" id="cartBar">
-    <div class="cart-summary">
-      <span class="cart-count-text" id="cartCount">0 items selected</span>
-      <span class="cart-total-text" id="cartTotal">GH₵ 0.00</span>
+  <!-- Sticky Bottom Cart Bar -->
+  <div class="cart-bar" id="cartBar" onclick="openCartDrawer()">
+    <div class="cart-info">
+      <span class="cart-count-badge" id="cartCountBadge">0 ITEMS</span>
+      <span class="cart-total-amount" id="cartTotalAmount">GH₵ 0.00</span>
     </div>
-    <a href="#" id="whatsappLink" target="_blank" class="whatsapp-btn">
-      Order on WhatsApp
-    </a>
+    <button class="btn-view-cart">View Cart &rarr;</button>
   </div>
+
+  <!-- Cart Drawer Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeCartDrawer()"></div>
+
+  <!-- Cart Drawer -->
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Your Cart</h2>
+      <button class="btn-close-drawer" onclick="closeCartDrawer()">&times;</button>
+    </div>
+    <div class="drawer-body" id="drawerBody">
+      <!-- Items populated by JS -->
+    </div>
+    <div class="drawer-footer">
+      <div class="summary-row">
+        <span>Total</span>
+        <span id="drawerTotalAmount">GH₵ 0.00</span>
+      </div>
+      <a href="#" id="whatsappCheckoutBtn" target="_blank" class="btn-whatsapp-checkout">
+        Order via WhatsApp
+      </a>
+    </div>
+  </aside>
 
   <footer class="site-footer">
     <p>&copy; BATCH. All rights reserved.</p>
@@ -716,10 +875,10 @@
     let activeCategory = 'all';
     let cart = {};
 
-    function setCategory(category, element) {
+    function setCategory(category, btn) {
       activeCategory = category;
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      element.classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       filterProducts();
     }
 
@@ -745,39 +904,98 @@
       } else {
         cart[title] = { price: price, quantity: 1 };
       }
-      updateCartBar();
+      renderCart();
     }
 
-    function updateCartBar() {
+    function updateQty(title, delta) {
+      if (cart[title]) {
+        cart[title].quantity += delta;
+        if (cart[title].quantity <= 0) {
+          delete cart[title];
+        }
+      }
+      renderCart();
+    }
+
+    function removeItem(title) {
+      delete cart[title];
+      renderCart();
+    }
+
+    function renderCart() {
       const cartBar = document.getElementById('cartBar');
-      const cartCount = document.getElementById('cartCount');
-      const cartTotal = document.getElementById('cartTotal');
-      const whatsappLink = document.getElementById('whatsappLink');
+      const cartCountBadge = document.getElementById('cartCountBadge');
+      const cartTotalAmount = document.getElementById('cartTotalAmount');
+      const drawerBody = document.getElementById('drawerBody');
+      const drawerTotalAmount = document.getElementById('drawerTotalAmount');
+      const whatsappCheckoutBtn = document.getElementById('whatsappCheckoutBtn');
 
       let totalItems = 0;
       let totalPrice = 0;
-      let orderSummary = "Hello BATCH! I would like to order:\n\n";
+      let drawerHTML = '';
+      let messageText = "Hello BATCH! I would like to place an order:\n\n";
 
-      for (let item in cart) {
-        let itemTotal = cart[item].price * cart[item].quantity;
-        totalItems += cart[item].quantity;
+      const items = Object.keys(cart);
+
+      if (items.length === 0) {
+        cartBar.classList.remove('active');
+        drawerBody.innerHTML = '<p class="empty-msg">Your cart is currently empty.</p>';
+        drawerTotalAmount.innerText = 'GH₵ 0.00';
+        whatsappCheckoutBtn.style.pointerEvents = 'none';
+        whatsappCheckoutBtn.style.opacity = '0.5';
+        return;
+      }
+
+      whatsappCheckoutBtn.style.pointerEvents = 'auto';
+      whatsappCheckoutBtn.style.opacity = '1';
+
+      items.forEach(title => {
+        const item = cart[title];
+        const itemTotal = item.price * item.quantity;
+        totalItems += item.quantity;
         totalPrice += itemTotal;
-        orderSummary += `• ${item} x${cart[item].quantity} (GH₵ ${itemTotal})\n`;
-      }
 
-      orderSummary += `\nTotal: GH₵ ${totalPrice.toFixed(2)}`;
+        messageText += `• ${title} x${item.quantity} - GH₵ ${itemTotal.toFixed(2)}\n`;
 
-      if (totalItems > 0) {
-        cartBar.classList.add('visible');
-        cartCount.innerText = `${totalItems} item${totalItems > 1 ? 's' : ''} selected`;
-        cartTotal.innerText = `GH₵ ${totalPrice.toFixed(2)}`;
-        
-        // Direct WhatsApp Link with Username and Phone Number Fallback (+256795502713)
-        const encodedMsg = encodeURIComponent(orderSummary);
-        whatsappLink.href = `https://wa.me/256795502713?text=${encodedMsg}`;
-      } else {
-        cartBar.classList.remove('visible');
-      }
+        drawerHTML += `
+          <div class="cart-item">
+            <div class="item-details">
+              <div class="item-name">${title}</div>
+              <div class="item-price">GH₵ ${item.price.toFixed(2)} each</div>
+              <div class="item-controls">
+                <button class="qty-btn" onclick="updateQty('${title}', -1)">-</button>
+                <span class="qty-val">${item.quantity}</span>
+                <button class="qty-btn" onclick="updateQty('${title}', 1)">+</button>
+              </div>
+            </div>
+            <div>
+              <div class="item-subtotal">GH₵ ${itemTotal.toFixed(2)}</div>
+              <button class="btn-remove" onclick="removeItem('${title}')">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+
+      messageText += `\nTotal Amount: GH₵ ${totalPrice.toFixed(2)}`;
+
+      cartBar.classList.add('active');
+      cartCountBadge.innerText = `${totalItems} ITEM${totalItems > 1 ? 'S' : ''}`;
+      cartTotalAmount.innerText = `GH₵ ${totalPrice.toFixed(2)}`;
+      drawerTotalAmount.innerText = `GH₵ ${totalPrice.toFixed(2)}`;
+      drawerBody.innerHTML = drawerHTML;
+
+      const encodedMsg = encodeURIComponent(messageText);
+      whatsappCheckoutBtn.href = `https://wa.me/256795502713?text=${encodedMsg}`;
+    }
+
+    function openCartDrawer() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('open');
+    }
+
+    function closeCartDrawer() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('open');
     }
   </script>
 </body>
